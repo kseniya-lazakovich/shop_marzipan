@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animations.css' %}">
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <title>
+    {% block title %}
+        
+    {% endblock %}
+        </title>
+</head>
+<body>
+    <nav class="navbar grid">
+        <div class="grid"><a href="">Главная</a></div>
+        <div class="grid"><a href="catalog/">Каталог</a></div>
+        <div class="grid"><a href="">О нас</a></div>
+        <div class="grid"><a href="">Вход | Регистрация</a></div>
+    </nav>
+    {% block content %}
+
+    {% endblock content %}
+    <footer class="main-footer">
+        <p>
+            adress mail nomber
+        </p>
+    </footer>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

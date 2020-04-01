@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Главная
+{% endblock  %}
+
+
+{% block content %}
+    <header class="grid main-header" style="background-image: url(/static/img/wp.jpg);">
+    </header>
+    <section class="grid category">
+        <div class="name_section">Категории</div>       
+        {% for ctg in ctgs %}
+            <div class="grid ctg ppl_img" style = "background-image: url('/static/{{ctg.img}}');">
+                <div class="name_ctg"><a href="">{{ctg.name}}</a></div>
+            </div>
+        {% endfor %}
+            
+        <div class="bth allItem">Смотреть все</div>
+    </section>
+    <section class="grid popular">
+        <div class="name_section">Популярное</div>
+        <div class="grid ppl"><img src="img/" class="ppl_img"></div>
+        <div class="grid ppl"><img src="img/" class="ppl_img"></div>
+        <div class="grid ppl"><img src="img/" class="ppl_img"></div>
+        <div class="grid ppl"><img src="img/" class="ppl_img"></div>
+        <div class="grid ppl"><img src="img/" class="ppl_img"></div>
+        <div class="grid ppl"><img src="img/" class="ppl_img"></div>
+        <div class="bth allItem">Смотреть все</div>
+    </section>
+    <section class="news">
+        <div class="new_news"></div>
+        <div class="new_news"></div>
+        <div class="new_news"></div>
+        <div class="new_news"></div>
+    </section>
+
+    {% endblock  %}
