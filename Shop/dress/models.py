@@ -1,41 +1,34 @@
 from django.db import models
-from datetime import date
+from django.urls import reverse
 
 class Category(models.Model):
     ''' Категория '''
     title = models.CharField('Категория', max_length=50)
-    url = models.SlugField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True)
 
     def __str__(self):
         return self.title
 
     class Meta:
+        ordering = ('title',)
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
-class Parameters(models.Model):
-    ''' Параметры '''
-    title = models.CharField('Параметры', max_length=50)
-    url = models.SlugField(max_length=100, unique=True)
+    def get_absolute_url(self):
+        return reverse('dress:product_category', args=[self.slug])
 
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = 'Параметр'
-        verbose_name_plural = 'Параметры'
-
-class Item(models.Model):
+class Product(models.Model):
     ''' Товары '''
-    title = models.CharField('Имя', max_length=100)
-    description = models.TextField('Описание')
-    image = models.ImageField('Изображение', upload_to="item/")
-    price = models.PositiveSmallIntegerField('Цена', default=0)
-    parameters = models.ManyToManyField(Parameters, verbose_name = 'Параметр', related_name="model_parameter")
-    published = models.DateField('Дата публикации', default = date.today)
-    category = models.ForeignKey(Category, verbose_name = 'Категория', on_delete=models.SET_NULL, null= True)
-    url = models.SlugField(max_length=100, unique=True)
-    draft = models.BooleanField('Черновик', default=False)
+    title = models.CharField('Имя', max_length=100, db_index=True)
+    description = models.TextField('Описание', blank=True)
+    image = models.ImageField('Изображение', upload_to="item/", blank=True)
+    price = models.DecimalField('Цена', max_digits=10, decimal_places=2)
+    category = models.ForeignKey(Category, verbose_name = 'Категория', on_delete=models.CASCADE, related_name='products')
+    slug = models.SlugField(max_length=100, db_index=True)
+    available = models.BooleanField(default=True, verbose_name='В наличии')    
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')    
+    updated = models.DateTimeField(auto_now=True, verbose_name='Дата последнего изменения')
+
 
     def __str__(self):
         return self.title
@@ -43,15 +36,8 @@ class Item(models.Model):
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
+        ordering = ('title',)
+        index_together = (('id', 'slug'),)
 
-class Articles(models.Model):
-    title = models.CharField('Название', max_length=200)
-    description = models.TextField('Содержание')
-    published = models.DateTimeField('Дата публикации', auto_now=True)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = 'Статья'
-        verbose_name_plural = 'Статьи'
+    def get_absolute_url(self):
+        return reverse('dress:product_detail', args=[self.id, self.slug])
