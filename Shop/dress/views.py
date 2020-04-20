@@ -4,6 +4,7 @@ from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
 from .models import Category, Product
 from django.views.generic.base import TemplateView
+from cart.forms import CartAddProductForm
 
 
 ''' Товары и категории '''
@@ -15,8 +16,9 @@ def index(request):
     categories = Category.objects.all()
     return render(request, 'dress/index.html', {'categories': categories, 'products': products, 'random_product': random_product, })
 
-class Account(TemplateView):
-    template_name = "dress/checkout.html"
+def about(request):
+    categories = Category.objects.all()
+    return render(request, 'dress/about.html', {'categories': categories})
 
 
 def product_list(request, category_slug=None):
@@ -31,10 +33,16 @@ def product_list(request, category_slug=None):
 
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
-    return render(request, 'dress/product/product-detail.html', {'product': product})
+    cart_product_form = CartAddProductForm() 
+    return render(request, 'dress/product/product-detail.html', {'product': product, 'cart_product_form':cart_product_form})
 
 
 ''' Авторизация '''
+
+def login(request):
+    categories = Category.objects.all()
+    return render(request, 'dress/checkout.html', {'categories': categories})
+
 
 # from django.contrib.auth import authenticate, login
 # from .forms import LoginForm

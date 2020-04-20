@@ -1,0 +1,154 @@
+{% extends 'dress/base.html' %}
+{% load static %}
+
+
+{% block title %}
+	Корзина
+{% endblock title %}
+	
+
+
+{% block content %}
+
+<div class="hero-wrap hero-bread mb-5" style="background-image: url('/static/images/bg-list.jpg');">
+	<div class="container">
+		<div class="row no-gutters slider-text align-items-center justify-content-center">
+			<div class="col-md-9 ftco-animate text-center">
+				<h1 class="mb-0 bread">Корзина</h1>
+				<p class="breadcrumbs"><span class="mr-2"><a href="{% url 'dress:index' %}">Главная</a></span>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<section class="ftco-section ftco-cart">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 ftco-animate">
+				<div class="cart-list">
+					<table class="table">
+						<thead class="thead-primary">
+							<tr class="text-center">
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>Продукт</th>
+								<th>Цена</th>
+								<th>Количество</th>
+								<th>Всего</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							{% for item in cart %}        
+								{% with product=item.product %} 
+
+							<tr class="text-center">
+								<td class="product-remove"><a href="{% url 'cart:cart_remove' product.id%}"><span class="ion-ios-close"></span></a></td>
+
+								<td class="image-prod">
+									<div class="img" style="background-image:url('{{ product.image.url }}');"></div>
+								</td>
+
+								<td class="product-name">
+									<h3><a href="{{ product.get_absolut_url}}">{{ product.title }}</a></h3>
+								</td>
+
+								<td class="price">{{ item.price}} BYN</td>
+
+								<td class="quantity">
+									{{ item.quantity }}
+								</td>
+
+								<td class="total">{{item.total_price}} BYN</td>
+							</tr><!-- END TR-->
+
+								{% endwith %}	
+							{% endfor %}
+
+							<tr class="text-center">
+								<td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+
+								<td class="image-prod">
+									<div class="img" style="background-image:url(images/product-4.jpg);"></div>
+								</td>
+
+								<td class="product-name">
+									<h3>Young Woman Wearing Dress</h3>
+									<p>Far far away, behind the word mountains, far from the countries</p>
+								</td>
+
+								<td class="price">$15.70</td>
+
+								<td class="quantity">
+									<div class="input-group mb-3">
+										{{ item.quantity }}
+									</div>
+								</td>
+
+								<td class="total">$15.70</td>
+							</tr><!-- END TR-->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-end">
+			<div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
+				<div class="cart-total mb-3">
+					<h3>Сумма к оплате</h3>
+					<p class="d-flex total-price">
+						<span>Total</span>
+						<span>{{ cart.get_total.price}}</span>
+					</p>
+				</div>
+				<p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="ftco-section bg-light">
+	<div class="container">
+		<div class="row justify-content-center mb-3 pb-3">
+			<div class="col-md-12 heading-section text-center ftco-animate">
+				<h1 class="big">Товары</h1>
+				<h2 class="mb-4">Сопутствующие товары</h2>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+					
+			{% for i in random_product %}
+
+			<div class="col-sm col-md-6 col-lg ftco-animate">
+				<div class="product">
+					<a href="#" class="img-prod"><img class="img-fluid rounded mx-auto d-block" src="{{ i.image.url }}"
+							alt="{{ i.title }}"></a>
+					<div class="text py-3 px-3">
+						<h3><a href="#">{{ i.title }}</a></h3>
+						<div class="d-flex">
+							<div class="pricing">
+								<p class="price"><span>{{ i.price }} BYN</span></p>
+							</div>
+						</div>
+						<hr>
+						<p class="bottom-area d-flex">
+							<a href="#" class="add-to-cart"><span>Add to cart <i
+										class="ion-ios-add ml-1"></i></span></a>
+							<a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
+						</p>
+					</div>
+				</div>
+			</div>	
+			{% endfor %}
+			
+			
+		</div>
+	</div>
+</section>
+	
+{% endblock content %}
+	
