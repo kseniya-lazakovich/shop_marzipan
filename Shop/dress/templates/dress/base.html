@@ -22,6 +22,10 @@
 
   <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+  <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
+
 </head>
 
 <body>
@@ -53,7 +57,7 @@
           <li class="nav-item"><a href="blog.html" class="nav-link">Новости и акции</a></li>
           <li class="nav-item"><a href="{% url 'dress:login' %}" class="nav-link">Вход | Регитрация</a></li>
           <li class="nav-item cta cta-colored"><a href="{% url 'cart:cart_detail' %}" class="nav-link"><span
-                class="icon-shopping_cart"></span>[0]</a></li>
+                class="icon-shopping_cart"></span>[ {{ cart.coun }} ]</a></li>
 
         </ul>
       </div>
@@ -85,7 +89,7 @@
             <h2 class="ftco-heading-2">Меню</h2>
             <ul class="list-unstyled">
               <li><a href="#" class="py-2 d-block">Категории</a></li>
-              <li><a href="#" class="py-2 d-block">О нас</a></li>
+              <li><a href="{% url 'dress:about' %}" class="py-2 d-block">О нас</a></li>
               <li><a href="#" class="py-2 d-block">Новости и акции</a></li>
             </ul>
           </div>
@@ -135,6 +139,27 @@
   <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
   <script src="{% static 'js/scrollax.min.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
+
+  <script>
+
+$(document).ready(function(){
+
+var quantitiy=0;
+   $('.quantity-right-plus').click(function(e){
+        e.preventDefault();
+        var quantity = parseInt($('#id_quantity').val());
+            $('#quantity').val(quantity + 1);
+    });
+     $('.quantity-left-minus').click(function(e){
+        e.preventDefault();
+        var quantity = parseInt($('#id_quantity').val());
+            if(quantity>0){
+            $('#id_quantity').val(quantity - 1);
+            }
+    });
+    
+});
+  </script>
 
 </body>
 

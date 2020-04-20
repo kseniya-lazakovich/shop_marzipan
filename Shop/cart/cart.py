@@ -54,6 +54,10 @@ class Cart(object):
         """Возвращает общее количество товаров в корзине."""
         return sum(item['quantity'] for item in self.cart.values())
 
+    def coun(self):
+        """Возвращает общее количество товаров в корзине."""
+        return sum(item['quantity'] for item in self.cart.values())
+
     def get_total_price(self):
         """ Итоговая сумма """
         return sum(Decimal(item['price']) * item['quantity']
