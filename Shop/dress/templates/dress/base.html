@@ -54,11 +54,13 @@
             </div>
           </li>
           <li class="nav-item"><a href="{% url 'dress:about' %}" class="nav-link">О нас</a></li>
-          <li class="nav-item"><a href="blog.html" class="nav-link">Новости и акции</a></li>
-          <li class="nav-item"><a href="{% url 'dress:login' %}" class="nav-link">Вход | Регитрация</a></li>
-          <li class="nav-item cta cta-colored"><a href="{% url 'cart:cart_detail' %}" class="nav-link"><span
-                class="icon-shopping_cart"></span>[ {{ cart.coun }} ]</a></li>
-
+          <li class="nav-item"><a href="{% url 'dress:news' %}" class="nav-link">Новости и акции</a></li>
+          <li class="nav-item"><a href="{% url 'dress:login' %}" class="nav-link">Вход | Регистрация</a></li>
+          <li class="nav-item cta cta-colored">
+            {% with total_items=cart|length %}
+            <a href="{% url 'cart:cart_detail' %}" class="nav-link"><span
+                class="icon-shopping_cart"></span>[ {{ total_items}} ]</a></li>
+            {% endwith %}
         </ul>
       </div>
     </div>
