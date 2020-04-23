@@ -1,5 +1,6 @@
 {% extends 'dress/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 
 {% block title %}
@@ -10,12 +11,12 @@
 
 {% block content %}
 <div class="hero-wrap hero-bread" style="background-image: url('/static/images/bg-list.jpg');">
-  <div class="container">
+  <div class="col">
     <div class="row no-gutters slider-text align-items-center justify-content-center">
       <div class="col-md-9 ftco-animate text-center">
         <h1 class="mb-0 bread">Детали</h1>
         <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'dress:index' %}">Главная</a></span> <span
-            class="mr-2"><a href="{% url 'dress:product_list' %}">Каталог</a></span> <span>Product Single</span></p>
+            class="mr-2"><a href="{% url 'dress:product_list' %}">Каталог</a></span> </p>
       </div>
     </div>
   </div>
@@ -48,14 +49,14 @@
           </div>
           <div class="w-100"></div>
 
-          <form action="{% url 'cart:cart_add' product.id %}" method="post">
-            <div class="input-group col-md-6 d-flex mb-3">
+          <form action="{% url 'cart:cart_add' product.id %}" method="post" >
+            <div class="input-group col-md-8 d-flex mb-3">
               <span class="input-group-btn mr-2">
                 <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
                   <i class="ion-ios-remove"></i>
                 </button>
               </span>
-              {{cart_product_form}}
+              {{cart_product_form.quantity}}
               {% csrf_token %}
               <span class="input-group-btn ml-2">
                 <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
@@ -63,7 +64,7 @@
                 </button>
               </span>
             </div>
-            <input type="submit" class="btn btn-primary" value="Add to cart">
+            <input type="submit" class="btn btn-primary ml-3 mt-4" value="Добавить в корзину">
           </form>
         </div>
       </div>

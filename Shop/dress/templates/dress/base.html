@@ -55,7 +55,7 @@
           </li>
           <li class="nav-item"><a href="{% url 'dress:about' %}" class="nav-link">О нас</a></li>
           <li class="nav-item"><a href="{% url 'dress:news' %}" class="nav-link">Новости и акции</a></li>
-          <li class="nav-item"><a href="{% url 'dress:login' %}" class="nav-link">Вход | Регистрация</a></li>
+          <li class="nav-item"><a href="{% url 'dress:login' %}" class="nav-link">Авторизация</a></li>
           <li class="nav-item cta cta-colored">
             {% with total_items=cart|length %}
             <a href="{% url 'cart:cart_detail' %}" class="nav-link"><span
@@ -150,7 +150,7 @@ var quantitiy=0;
    $('.quantity-right-plus').click(function(e){
         e.preventDefault();
         var quantity = parseInt($('#id_quantity').val());
-            $('#quantity').val(quantity + 1);
+            $('#id_quantity').val(quantity + 1);
     });
      $('.quantity-left-minus').click(function(e){
         e.preventDefault();

@@ -41,3 +41,21 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('dress:product_detail', args=[self.id, self.slug])
+
+
+class News(models.Model):
+    """ Новости и акции """
+    title =models.CharField('Заголовок', max_length=200, db_index=True)
+    description = models.TextField('Описание', blank=True)
+    image = models.ImageField('Изображение', upload_to="news/", blank=True)
+    slug = models.SlugField(max_length=100, db_index=True)
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Новости и Акции'
+        verbose_name_plural = 'Новости и Акции'
+        ordering = ('-created',)
+    
