@@ -28,8 +28,7 @@
 					{% endif %}
 				</h1>
 				<p class="breadcrumbs"><span class="mr-2"><a href="{% url 'dress:index' %}">Главная</a></span> <span
-						class="mr-2"><a href="{% url 'dress:product_list' %}">Каталог</a></span> <span>Product
-						Single</span></p>
+						class="mr-2"><a href="{% url 'dress:product_list' %}">Каталог</a></span> </p>
 			</div>
 		</div>
 	</div>
@@ -42,7 +41,7 @@
 			{% for i in product_page %}
 			<div class="col-sm col-md-6 col-lg-3 ftco-animate">
 				<div class="product">
-					<a href="{{ i.get_absolute_url }}" class="img-prod"><img class="img-fluid" src="{{ i.image.url }}"
+					<a href="{{ i.get_absolute_url }}" class="img-prod"><img class="img-fluid ml-auto" src="{{ i.image.url }}"
 							alt="{{ i.title }}">
 					</a>
 					<div class="text py-3 px-3">
