@@ -3865,12 +3865,10 @@ input[type="button"].btn-block {
 
 .page-item:first-child .page-link {
   margin-left: 0;
-  border-top-left-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem; }
+  border-radius: 50%; }
 
 .page-item:last-child .page-link {
-  border-top-right-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem; }
+  border-radius: 50%; }
 
 .page-item.active .page-link {
   z-index: 1;
@@ -8726,22 +8724,27 @@ textarea.form-control {
 
 .block-27 ul {
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  -webkit-box-pack: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important; }
   .block-27 ul li {
     display: inline-block;
     margin-bottom: 4px;
+    margin: 0 10px;
     font-weight: 400; }
     .block-27 ul li a, .block-27 ul li span {
-      color: #f1b8c4;
+      color: #9f9ad6;
+      padding: 0 10px;
       text-align: center;
       display: inline-block;
       width: 40px;
       height: 40px;
       line-height: 40px;
       border-radius: 50%;
-      border: 1px solid #f1b8c4; }
+      border: 1px solid #9f9ad6; }
     .block-27 ul li.active a, .block-27 ul li.active span {
-      background: #f1b8c4;
+      background: #7b76b4 !important;
       color: #fff;
       border: 1px solid transparent; }
 
