@@ -52,37 +52,3 @@ def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     cart_product_form = CartAddProductForm()
     return render(request, 'dress/product/product-detail.html', {'product': product, 'cart_product_form': cart_product_form})
-
-
-''' Авторизация '''
-
-
-def login(request):
-    categories = Category.objects.all()
-    return render(request, 'dress/checkout.html', {'categories': categories})
-
-
-# from django.contrib.auth import authenticate, login
-# from .forms import LoginForm
-
-# def user_login(request):
-#     if request.method == 'POST':
-#         form = LoginForm(request.POST)
-#         if form.is_valid():
-#             cd = form.cleaned_data
-#             user = authenticate(request, username=cd['username'],
-#                                 password = cd['password'])
-#         if user is not None:
-#             if user.is_active:
-#                 login(request, user)
-#                 return HttpResponse('Вход выполнен')
-#             else:
-#                 return HttpResponse('Вы вышли')
-#         else:
-#             return HttpResponse('Неправильный логин или пароль')
-#     else:
-#         form = LoginForm()
-#     return render(request, 'dress/account/checkout.html', {'form': form})
-
-
-""" Постраничное отображение(пагинатор) """

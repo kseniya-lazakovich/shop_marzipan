@@ -55,7 +55,7 @@
           </li>
           <li class="nav-item"><a href="{% url 'dress:about' %}" class="nav-link">О нас</a></li>
           <li class="nav-item"><a href="{% url 'dress:news' %}" class="nav-link">Новости и акции</a></li>
-          <li class="nav-item"><a href="{% url 'dress:login' %}" class="nav-link">Авторизация</a></li>
+          <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">Авторизация</a></li>
           <li class="nav-item cta cta-colored">
             {% with total_items=cart|length %}
             <a href="{% url 'cart:cart_detail' %}" class="nav-link"><span
