@@ -1,0 +1,42 @@
+{% extends 'dress/base.html' %}
+{% load static %}
+
+
+{% block title %}
+Кабинет
+{% endblock title %}
+
+
+
+{% block content %}
+
+<div class="hero-wrap hero-bread" style="background-image: url('/static/images/bg-list.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-0 bread">Кабинет</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'dress:index' %}">Главная</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <li><a href="">Настройки профиля</a></li>
+                <li><a href="">Пароль</a></li>
+                <li><a href="">Способы оплаты</a></li>
+                <li><a href="{% url 'account:logout' %}">Выход</a></li>
+            </div>
+            <div class="col-md-8">
+
+            </div>
+        </div>
+    </div>
+</section>
+    
+{% endblock content %}
+    

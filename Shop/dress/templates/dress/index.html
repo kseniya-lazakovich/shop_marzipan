@@ -29,8 +29,7 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" 
-  id="ftco-navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand" href="{% url 'dress:index' %}">MarZipan</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
@@ -54,146 +53,154 @@
           </li>
           <li class="nav-item"><a href="{% url 'dress:about' %}" class="nav-link">О нас</a></li>
           <li class="nav-item"><a href="{% url 'dress:news' %}" class="nav-link">Новости и акции</a></li>
-          <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">Авторизация</a></li>
+          <li class="nav-item">
+
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'account:profile' %}" class="nav-link">{{ request.user.username }}</a>
+            {% else %}
+            <a href="{% url 'account:login' %}" class="nav-link">Авторизация</a>
+            {% endif %}
+
+          </li>
           <li class="nav-item cta cta-colored">
             {% with total_items=cart|length %}
-            <a href="{% url 'cart:cart_detail' %}" class="nav-link"><span
-                class="icon-shopping_cart"></span>[ {{ total_items}} ]</a></li>
-            {% endwith %}
+            <a href="{% url 'cart:cart_detail' %}" class="nav-link"><span class="icon-shopping_cart"></span>[
+              {{ total_items}} ]</a></li>
+          {% endwith %}
         </ul>
       </div>
     </div>
   </nav>
 
-<div class="hero-wrap js-fullheight" style="background-image: url('/static/images/bg-n.jpg');">
-	<div class="overlay">
-		
-	</div>
-	<div class="col-md-6">
-		<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-			<h3 class="vr" style="color: #000000;">MARZIPAN - магазин твоего стиля</h3>
-			<div class="ftco-animate text-center">
-				<h1>Твое платье</h1>
-				<h2><span>Подобрать</span></h2>
-			</div>
-			<div class="mouse">
-				<a href="#" class="mouse-icon">
-					<div class="mouse-wheel"><span class="ion-ios-arrow-down"></span></div>
-				</a>
-			</div>
-		</div>
-	</div>
-</div>
+  <div class="hero-wrap js-fullheight" style="background-image: url('/static/images/bg-n.jpg');">
+    <div class="overlay">
 
-<div class="goto-here"></div>
+    </div>
+    <div class="col-md-6">
+      <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+        <h3 class="vr" style="color: #000000;">MARZIPAN - магазин твоего стиля</h3>
+        <div class="ftco-animate text-center">
+          <h1>Твое платье</h1>
+          <h2><span>Подобрать</span></h2>
+        </div>
+        <div class="mouse">
+          <a href="#" class="mouse-icon">
+            <div class="mouse-wheel"><span class="ion-ios-arrow-down"></span></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<section class="ftco-section ftco-product">
-	<div class="container">
-		<div class="row justify-content-center mb-3 pb-3">
-			<div class="col-md-12 heading-section text-center ftco-animate">
-				<h1 class="big">Популярное</h1>
-				<h2 class="mb-4">Популярное</h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="product-slider owl-carousel ftco-animate">
+  <div class="goto-here"></div>
 
-					
-					{% for c in random_product %}
+  <section class="ftco-section ftco-product">
+    <div class="container">
+      <div class="row justify-content-center mb-3 pb-3">
+        <div class="col-md-12 heading-section text-center ftco-animate">
+          <h1 class="big">Популярное</h1>
+          <h2 class="mb-4">Популярное</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="product-slider owl-carousel ftco-animate">
 
-					<div class="item">
-						<div class="product">
-							<a href="{{ c.get_absolute_url }}" class="img-prod"><img class="img-fluid mx-auto" src="{{ c.image.url }}"
-									alt="{{ c.title}}">
-							</a>
-							<div class="text pt-3 px-3">
-								<h3><a href="{{ c.get_absolute_url }}">{{ c.title }}</a></h3>
-								<div class="d-flex">
-									<div class="pricing">
-										<p class="price"><span>{{ c.price }} BYN</span></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					{% endfor %}
 
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+            {% for c in random_product %}
 
-<section class="ftco-section ftco-no-pb ftco-no-pt">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center"
-				style="background-image: url('/static/images/bg-11.jpg');">
-			</div>
-			<div class="col-md-7 py-5 wrap-about pb-md-5 ftco-animate">
-				<div class="heading-section-bold mb-5 mt-md-5">
-					<div class="ml-md-0">
-						<h2 class="mb-4" style="color: rgb(201, 117, 38)">MARZIPAN<br></h2> 
-						<h2 class="mb-4">онлайн-магазин одежды</h2>
-					</div>
-				</div>
-				<div class="pb-md-5">
-					<p>Безукоризненное качество материалов, малотиражность, удобство и комфорт — главные ценности бренда MARZIPAN. 
-						А каждое изделие и есть та недостающая соль, которая делает образ «вкуснее». Дизайнеры шьют одежду 
-						для себя и лучшим делятся с клиентами, добавляя к этому любовь и тепло. Все коллекции бренда объединяет 
-						элегантная женственность, необычный крой и гармоничное сочетание трендов с великой классикой. Видно, 
-						что за каждой деталью стоит большая работа профессионалов и полная отдача любимому делу!</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+            <div class="item">
+              <div class="product">
+                <a href="{{ c.get_absolute_url }}" class="img-prod"><img class="img-fluid mx-auto"
+                    src="{{ c.image.url }}" alt="{{ c.title}}">
+                </a>
+                <div class="text pt-3 px-3">
+                  <h3><a href="{{ c.get_absolute_url }}">{{ c.title }}</a></h3>
+                  <div class="d-flex">
+                    <div class="pricing">
+                      <p class="price"><span>{{ c.price }} BYN</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
 
-<section class="ftco-section">
-	<div class="container">
-		<div class="row justify-content-center mb-3 pb-3">
-			<div class="col-md-12 heading-section text-center ftco-animate">
-				<h1 class="big">Все модели</h1>
-				<h2 class="mb-4">Модели</h2>
-			</div>
-		</div>
-	</div>
-	<div class="container-fluid">
-		<div class="row">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-				
-			{% for i in random_product %}
-					
-			<div class="col-sm col-md-6 col-lg ftco-animate">
-				<div class="product">
-					<a href="{{ i.get_absolute_url }}" class="img-prod"><img class="img-fluid rounded mx-auto d-block" src="{{ i.image.url }}"
-							alt="{{ i.title }}"></a>
-					<div class="text py-3 px-3">
-						<h3><a href="{{ i.get_absolute_url }}">{{ i.index }}</a></h3>
-						<div class="d-flex">
-							<div class="pricing">
-								<a href="{{ c.get_absolute_url }}" style="color: black;">{{ i.title }}</a>
-								<p class="price"><span>{{ i.price }} BYN</span></p>
-							</div>
-						</div>
-						<hr>
-						<p class="bottom-area d-flex">
-							<a href="" class="add-to-cart"><span>Add to cart <i
-										class="ion-ios-add ml-1"></i></span></a>
-							<a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
-						</p>
-					</div>
-				</div>
-			</div>
+  <section class="ftco-section ftco-no-pb ftco-no-pt">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center"
+          style="background-image: url('/static/images/bg-11.jpg');">
+        </div>
+        <div class="col-md-7 py-5 wrap-about pb-md-5 ftco-animate">
+          <div class="heading-section-bold mb-5 mt-md-5">
+            <div class="ml-md-0">
+              <h2 class="mb-4" style="color: rgb(201, 117, 38)">MARZIPAN<br></h2>
+              <h2 class="mb-4">онлайн-магазин одежды</h2>
+            </div>
+          </div>
+          <div class="pb-md-5">
+            <p>Безукоризненное качество материалов, малотиражность, удобство и комфорт — главные ценности бренда
+              MARZIPAN.
+              А каждое изделие и есть та недостающая соль, которая делает образ «вкуснее». Дизайнеры шьют одежду
+              для себя и лучшим делятся с клиентами, добавляя к этому любовь и тепло. Все коллекции бренда объединяет
+              элегантная женственность, необычный крой и гармоничное сочетание трендов с великой классикой. Видно,
+              что за каждой деталью стоит большая работа профессионалов и полная отдача любимому делу!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-			{% endfor %}
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center mb-3 pb-3">
+        <div class="col-md-12 heading-section text-center ftco-animate">
+          <h1 class="big">Все модели</h1>
+          <h2 class="mb-4">Модели</h2>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
 
-		</div>
-	</div>
-</section>
 
-<footer class="ftco-footer bg-light ftco-section">
+        {% for i in random_product %}
+
+        <div class="col-sm col-md-6 col-lg ftco-animate">
+          <div class="product">
+            <a href="{{ i.get_absolute_url }}" class="img-prod"><img class="img-fluid rounded mx-auto d-block"
+                src="{{ i.image.url }}" alt="{{ i.title }}"></a>
+            <div class="text py-3 px-3">
+              <h3><a href="{{ i.get_absolute_url }}">{{ i.index }}</a></h3>
+              <div class="d-flex">
+                <div class="pricing">
+                  <a href="{{ c.get_absolute_url }}" style="color: black;">{{ i.title }}</a>
+                  <p class="price"><span>{{ i.price }} BYN</span></p>
+                </div>
+              </div>
+              <hr>
+              <p class="bottom-area d-flex">
+                <a href="" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+                <a href="#" class="ml-auto"><span><i class="ion-ios-heart-empty"></i></span></a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="ftco-footer bg-light ftco-section">
     <div class="container">
       <div class="row mb-5">
         <div class="col-md">
@@ -236,7 +243,7 @@
         </div>
       </div>
     </div>
-</footer>
+  </footer>
 
 
 
@@ -264,23 +271,23 @@
 
   <script>
 
-$(document).ready(function(){
+    $(document).ready(function () {
 
-var quantitiy=0;
-   $('.quantity-right-plus').click(function(e){
+      var quantitiy = 0;
+      $('.quantity-right-plus').click(function (e) {
         e.preventDefault();
         var quantity = parseInt($('#id_quantity').val());
-            $('#quantity').val(quantity + 1);
-    });
-     $('.quantity-left-minus').click(function(e){
+        $('#quantity').val(quantity + 1);
+      });
+      $('.quantity-left-minus').click(function (e) {
         e.preventDefault();
         var quantity = parseInt($('#id_quantity').val());
-            if(quantity>0){
-            $('#id_quantity').val(quantity - 1);
-            }
+        if (quantity > 0) {
+          $('#id_quantity').val(quantity - 1);
+        }
+      });
+
     });
-    
-});
   </script>
 
 </body>

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'account',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +42,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'dress',
     'cart',
-    'account',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +136,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CART_SESSION_ID = 'cart'
+
+LOGIN_REDIRECT_URL = 'account:profile' 
+LOGIN_URL = 'account:login' 
+LOGOUT_URL = 'account:logout'

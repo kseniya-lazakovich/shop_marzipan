@@ -55,7 +55,15 @@
           </li>
           <li class="nav-item"><a href="{% url 'dress:about' %}" class="nav-link">О нас</a></li>
           <li class="nav-item"><a href="{% url 'dress:news' %}" class="nav-link">Новости и акции</a></li>
-          <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">Авторизация</a></li>
+          <li class="nav-item">
+
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'account:profile' %}" class="nav-link">{{ request.user.username }}</a>
+            {% else %}
+            <a href="{% url 'account:login' %}" class="nav-link">Авторизация</a>
+            {% endif %}
+
+          </li>
           <li class="nav-item cta cta-colored">
             {% with total_items=cart|length %}
             <a href="{% url 'cart:cart_detail' %}" class="nav-link"><span
