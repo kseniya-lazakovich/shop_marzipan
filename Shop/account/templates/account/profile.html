@@ -24,19 +24,52 @@
 
 <section class="ftco-section pt-0">
     <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <li><a href="">Настройки профиля</a></li>
-                <li><a href="">Пароль</a></li>
-                <li><a href="">Способы оплаты</a></li>
-                <li><a href="{% url 'account:logout' %}">Выход</a></li>
+        <div class="col-md-10 mx-auto mt-4">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                        aria-controls="profile" aria-selected="true">Профиль</a>
+                    <a class="nav-item nav-link" id="password-tab" data-toggle="tab" href="#password" role="tab"
+                        aria-controls="password" aria-selected="false">Пароль</a>
+                    <a class="nav-item nav-link" id="pay-tab" data-toggle="tab" href="#pay" role="tab"
+                        aria-controls="pay" aria-selected="false">Оплата</a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <h3 class="col-md-12 mb-4 mt-4 billing-heading">Детали</h3>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" class="form-control" value="{{ request.user.first_name }}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Фамилия</label>
+                        <input type="text" class="form-control" value="{{ request.user.last_name }}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Логин</label>
+                        <input type="text" class="form-control" value="{{ request.user.username }}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>E-Mail</label>
+                        <input type="text" class="form-control" value="{{ request.user.email}}" readonly>
+                    </div>
+                </div>
+                <div class="cart-detail  text-center col-md-6">
+                    <a class="mt-6" href="{% url 'account:logout' %}">Выход</a>
+                </div>
             </div>
-            <div class="col-md-8">
-
-            </div>
+            <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">...</div>
+            <div class="tab-pane fade" id="pay" role="tabpanel" aria-labelledby="pay-tab">...</div>
         </div>
     </div>
 </section>
-    
+
+
 {% endblock content %}
-    

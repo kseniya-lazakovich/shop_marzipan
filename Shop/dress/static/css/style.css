@@ -3217,7 +3217,7 @@ input[type="button"].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #78d5ef; }
+  background-color: #ea8277; }
 
 .nav-fill .nav-item {
   -webkit-box-flex: 1;
@@ -7285,7 +7285,7 @@ a {
   color: #f1b8c4; }
   a:hover {
     text-decoration: none;
-    color: #f1b8c4; }
+    color: #000000; }
 
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
