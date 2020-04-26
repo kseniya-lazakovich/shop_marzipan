@@ -25,7 +25,8 @@ def about(request):
 
 
 def news(request):
-    return render(request, 'dress/news.html')
+    categories = Category.objects.all()
+    return render(request, 'dress/news.html', {'categories': categories})
 
 
 def product_list(request, category_slug=None):
