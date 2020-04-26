@@ -15,18 +15,15 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 def index(request):
     random_product = Product.objects.order_by('?')[:4]
     products = Product.objects.all()
-    categories = Category.objects.all()
-    return render(request, 'dress/index.html', {'categories': categories, 'products': products, 'random_product': random_product, })
+    return render(request, 'dress/index.html', {'products': products, 'random_product': random_product, })
 
 
 def about(request):
-    categories = Category.objects.all()
-    return render(request, 'dress/about.html', {'categories': categories})
+    return render(request, 'dress/about.html')
 
 
 def news(request):
-    categories = Category.objects.all()
-    return render(request, 'dress/news.html', {'categories': categories})
+    return render(request, 'dress/news.html')
 
 
 def product_list(request, category_slug=None):
@@ -38,7 +35,7 @@ def product_list(request, category_slug=None):
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
     
-    paginator = Paginator(products, 4)
+    paginator = Paginator(products, 8)
     page = request.GET.get('page')
     try:
         product_page = paginator.page(page)
