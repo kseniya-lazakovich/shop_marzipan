@@ -8,18 +8,18 @@ class LoginForm(forms.Form):
 
 
 class UserRegForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Пароль *'}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Повторите пароль *'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Пароль *', 'required':'True'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Повторите пароль *', 'required':'True'}))
  
 
     class Meta:        
         model = User        
         fields = ('first_name', 'last_name', 'username', 'email')
         widgets = {
-            'first_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Имя *'}),
+            'first_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Имя *', 'required':'True'}),
             'last_name' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Фамилия'}),
-            'username' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Логин *'}),
-            'email' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'E-Mail *'}),      
+            'username' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Логин *', 'required':'True'}),
+            'email' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'E-Mail *', 'required':'True'}),      
         }
     
     def clean_password2(self):

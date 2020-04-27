@@ -1,18 +1,30 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from .forms import UserRegForm
 from django.views.generic.edit import FormView
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+
 
 @login_required
 def profile(request):
-    return render(request,'account/profile.html')
+    """страница профиля"""
+    return render(request, 'account/profile.html')
 
+class PasswordChange(PasswordChangeView, SuccessMessageMixin, LoginRequiredMixin):
+    template_name = 'account/password_change.html'
+    success_url = reverse_lazy('account:profile')
+    success_message = 'Пароль пользователя изменен'
 
+    
 class AccountView(TemplateView):
+    """ Обработка get запроса """
     template_name = 'registration/login.html'
 
     def get(self, request, *args, **kwargs):
@@ -25,6 +37,7 @@ class AccountView(TemplateView):
 
 
 class LoginFormView(FormView):
+    """ обработка формы входа """
     form_class = LoginForm
     template_name = 'account/profile.html'
     success_url = '/'
@@ -52,9 +65,10 @@ class LoginFormView(FormView):
         )
         else:
             login_form = LoginForm()
-            return self.render_to_response(self.get_context_data(login_form=login_form,))
+            return self.render_to_response(self.get_context_data(login_form=login_form, user_form=user_form,))
 
 class UserRegFormView(FormView):
+    """ обработка формы регистрации """
     form_class = UserRegForm
     template_name = 'registration/success.html'
     success_url = '/'

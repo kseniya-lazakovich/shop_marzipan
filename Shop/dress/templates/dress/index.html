@@ -56,7 +56,16 @@
           <li class="nav-item">
 
             {% if request.user.is_authenticated %}
-            <a href="{% url 'account:profile' %}" class="nav-link">{{ request.user.username }}</a>
+            <a href="{% url 'account:profile' %}" class="nav-link" >
+              <span class="icon-user"> </span>
+              
+              {% if request.user.first_name and request.user.last_name %}
+              {{ request.user.first_name }} {{ request.user.last_name }}
+              {% else %}
+              {{ request.user.first_name }}
+              {% endif %}
+                
+            </a>
             {% else %}
             <a href="{% url 'account:auth' %}" class="nav-link">Авторизация</a>
             {% endif %}

@@ -25,20 +25,20 @@
 <section class="ftco-section pt-0">
     <div class="container">
         <div class="col-md-10 mx-auto mt-4">
+            {% block section %}
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                        aria-controls="profile" aria-selected="true">Профиль</a>
-                    <a class="nav-item nav-link" id="password-tab" data-toggle="tab" href="#password" role="tab"
-                        aria-controls="password" aria-selected="false">Пароль</a>
-                    <a class="nav-item nav-link" id="pay-tab" data-toggle="tab" href="#pay" role="tab"
-                        aria-controls="pay" aria-selected="false">Оплата</a>
+                    <a class="nav-item nav-link active" href="{% url 'account:profile' %}">Профиль</a>
+                    <a class="nav-item nav-link" href="{% url 'account:password' %}">Пароль</a>
+                    <a class="nav-item nav-link" href="">Оплата</a>
                 </div>
             </nav>
-            <div class="tab-content" id="nav-tabContent">
-                <h3 class="col-md-12 mb-4 mt-4 billing-heading">Детали</h3>
+
+            <div class="tab-content">
+                <h3 class="col-md-12 ml-4 mb-4 mt-4 billing-heading">Детали</h3>
                 <div class="col-md-6">
                     <div class="form-group">
+                        {% csrf_token %}
                         <label>Имя</label>
                         <input type="text" class="form-control" value="{{ request.user.first_name }}" readonly>
                     </div>
@@ -65,8 +65,8 @@
                     <a class="mt-6" href="{% url 'account:logout' %}">Выход</a>
                 </div>
             </div>
-            <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab"></div>
-            <div class="tab-pane fade" id="pay" role="tabpanel" aria-labelledby="pay-tab"></div>
+
+            {% endblock section %}
         </div>
     </div>
 </section>
