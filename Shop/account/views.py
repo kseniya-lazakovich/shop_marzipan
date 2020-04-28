@@ -18,8 +18,9 @@ def profile(request):
     return render(request, 'account/profile.html')
 
 class PasswordChange(PasswordChangeView, SuccessMessageMixin, LoginRequiredMixin):
+    """ Смена пароля """
     template_name = 'account/password_change.html'
-    success_url = reverse_lazy('account:profile')
+    success_url = reverse_lazy('account:password')
     success_message = 'Пароль пользователя изменен'
 
     

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, News
+from .models import Category, Product
 
 @admin.register(Category) 
 class CategoryAdmin(admin.ModelAdmin):
@@ -13,7 +13,4 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ['price', 'available']    
     prepopulated_fields = {'slug': ('title',)} 
 
-@admin.register(News)
-class NewsAdmin(admin.ModelAdmin):
-    list_display = ['title', 'created']
-    list_filter = ['created']
+

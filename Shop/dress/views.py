@@ -9,7 +9,7 @@ from cart.forms import CartAddProductForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
-''' Товары и категории '''
+"""Товары и категории"""
 
 
 def index(request):
@@ -22,10 +22,6 @@ def about(request):
     return render(request, 'dress/about.html')
 
 
-def news(request):
-    return render(request, 'dress/news.html')
-
-
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
@@ -34,7 +30,7 @@ def product_list(request, category_slug=None):
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
-    
+
     paginator = Paginator(products, 8)
     page = request.GET.get('page')
     try:
@@ -43,7 +39,7 @@ def product_list(request, category_slug=None):
         product_page = paginator.page(1)
     except EmptyPage:
         product_page = paginator.page(paginator.num_pages)
-    return render(request, 'dress/product/product-list.html', {'category': category, 'categories': categories, 'products': products, 'page':page, 'product_page':product_page})
+    return render(request, 'dress/product/product-list.html', {'category': category, 'categories': categories, 'products': products, 'page': page, 'product_page': product_page})
 
 
 def product_detail(request, id, slug):
