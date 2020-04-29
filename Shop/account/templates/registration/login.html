@@ -51,15 +51,17 @@
 									{{ login_form.password }}
 								</div>
 							</div>
-							<div class="cart-detail col-md-6 mt-4">
-								<input type="hidden" name="next" value="{{ next }}" />
-								<p><input type="submit" class="btn btn-primary py-3 px-4" value="Войти"></p>
+							<div class="col row justify-content-around">
+								<input type="submit" class="btn btn-primary py-3 px-4" value="Войти">
+								<div class="col-6 text-center mt-3">
+									<a href="" class="mx-auto">Забыли пароль?</a>
+								</div>
 							</div>
 						</div>
 					</form>
 				</div>
 				<div class="tab-pane fade" id="reg" role="tabpanel" aria-labelledby="reg-tab">
-					<form action="{% url 'account:register' %}" method="POST" class="p-3 p-md-5">
+					<form action="" method="POST" class="p-3 p-md-5">
 						{% csrf_token %}
 						<div class="align-items-end mx-auto p-3 row col-md-12">
 							<div class="col">

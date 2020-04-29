@@ -28,18 +28,20 @@ class Section(models.Model):
     title = models.CharField('Заголовок', max_length=200, blank=True)
     body = models.TextField('Тело')
     image = models.ImageField('Изображение', upload_to="blog/section/", blank=True)
+    created = models.DateTimeField('Создание', auto_now_add=True, blank=True)
 
     class Meta:
         verbose_name = 'Секция'
         verbose_name_plural = 'Секции'
+        ordering = ('created',)
 
 class Comment(models.Model):
     """ Комментарии """
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='comments', verbose_name='Статья')
     name = models.CharField('Имя', max_length=80)
-    email = models.EmailField('Email')
-    body = models.TextField('Комент')
+    email = models.EmailField('E-Mail')
+    body = models.TextField('Комментарий')
     created = models.DateTimeField('Создание', auto_now_add=True)
     updated = models.DateTimeField('Обновление', auto_now=True)
     active = models.BooleanField('Активность', default=True)

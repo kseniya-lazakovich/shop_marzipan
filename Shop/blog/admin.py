@@ -14,4 +14,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ('active', 'created', 'updated')    
     search_fields = ('name', 'email', 'body') 
 
-admin.site.register(Section)
+@admin.register(Section)
+class SectionAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created', 'body',)
+    search_fields = ('title',)

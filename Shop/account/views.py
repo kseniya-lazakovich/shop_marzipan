@@ -40,7 +40,7 @@ class AccountView(TemplateView):
 class LoginFormView(FormView):
     """ обработка формы входа """
     form_class = LoginForm
-    template_name = 'account/profile.html'
+    template_name = 'registration/login.html'
     success_url = '/'
 
     def post(self, request, *args, **kwargs):
@@ -71,7 +71,7 @@ class LoginFormView(FormView):
 class UserRegFormView(FormView):
     """ обработка формы регистрации """
     form_class = UserRegForm
-    template_name = 'registration/success.html'
+    template_name = 'registration/login.html'
     success_url = '/'
 
     def post(self, request, *args, **kwargs):
