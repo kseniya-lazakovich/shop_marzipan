@@ -5,7 +5,6 @@ from django.urls import reverse
 class Post(models.Model):
     """ Статьи """
     title = models.CharField('Заголовок', max_length=200, db_index=True)
-    description = models.TextField('Описание', blank=True)
     image = models.ImageField('Изображение', upload_to="blog/", blank=True)
     slug = models.SlugField(max_length=100, db_index=True)
     created = models.DateTimeField(
@@ -20,8 +19,19 @@ class Post(models.Model):
         ordering = ('-created',)
 
     def get_absolute_url(self):
-        return reverse('blog:blog', args=[self.slug])
+        return reverse('blog:post_detail', args=[self.slug])
 
+
+class Section(models.Model):
+    """ Секции для статей """
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='sections', verbose_name='Статья')
+    title = models.CharField('Заголовок', max_length=200, blank=True)
+    body = models.TextField('Тело')
+    image = models.ImageField('Изображение', upload_to="blog/section/", blank=True)
+
+    class Meta:
+        verbose_name = 'Секция'
+        verbose_name_plural = 'Секции'
 
 class Comment(models.Model):
     """ Комментарии """
@@ -37,7 +47,7 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Коментарий'
         verbose_name_plural = 'Коментарии'
-        ordering = ('created',)
+        ordering = ('-created',)
 
     def __str__(self):
         return 'Comment by {} on {}'.format(self.name, self.post)

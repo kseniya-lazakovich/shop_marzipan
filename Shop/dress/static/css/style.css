@@ -8590,7 +8590,7 @@ textarea.form-control {
   overflow: hidden;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center top;
   height: 250px;
   position: relative;
   display: block; }

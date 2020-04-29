@@ -54,7 +54,7 @@
             </div>
           </li>
           <li class="nav-item"><a href="{% url 'dress:about' %}" class="nav-link">О нас</a></li>
-          <li class="nav-item"><a href="{% url 'blog:blog' %}" class="nav-link">Блог</a></li>
+          <li class="nav-item"><a href="{% url 'blog:blog_list' %}" class="nav-link">Блог</a></li>
           <li class="nav-item">
 
             {% if request.user.is_authenticated %}
