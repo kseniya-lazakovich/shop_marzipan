@@ -6,6 +6,9 @@
 {{ post.title }}
 {% endblock title %}
 
+{% block h1 %}
+{{post.title}}
+{% endblock h1 %}
 
 {% block content %}
 
@@ -82,7 +85,7 @@
 
           <div class="comment-form-wrap bg-light p-5">
             <p class="mb-0">Оставлять комментарии могут только зарегистрированные пользователи. <a
-                href="{% url 'account:auth' %}">Войти?</a></p>
+                href="{% url 'account:login' %}">Войти?</a></p>
           </div>
           {% endif %}
         </div> <!-- .col-md-8 -->

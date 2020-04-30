@@ -1,5 +1,5 @@
 {% load static %}
-{% load bootstrap4 %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,17 +29,6 @@
 
 </head>
 <body>
-<div class="p-5 bg-dark">
-
-  {% if messages %}
-  {% for message in messages %}
-  <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <strong>{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error{% else %}{{ message.tags|title }}{% endif %}!</strong> {{ message }}
-  </div>
-  {% endfor %}
-{% endif %}
-</div>
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light ftco-navbar-light-2" 
   id="ftco-navbar">
     <div class="container">
@@ -79,7 +68,7 @@
 
             </a>
             {% else %}
-            <a href="{% url 'account:auth' %}" class="nav-link">Авторизация</a>
+            <a href="{% url 'account:login' %}" class="nav-link">Авторизация</a>
             {% endif %}
 
           </li>
@@ -95,8 +84,21 @@
 
   <!-- END nav -->
 
-  {% block content %}
+  <div class="hero-wrap hero-bread" style="background-image: url('/static/images/bg-list.jpg');">
+    <div class="row no-gutters slider-text align-items-center justify-content-center" style="background: #ffffff9d;">
+      <div class="col-md-9 ftco-animate text-center">
+        <h1 class="mb-0 bread">
+        {% block h1 %}
+          
+        {% endblock h1 %}
+          </h1>
+        <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'dress:index' %}">Главная</a></span>
+        </p>
+      </div>
+    </div>
+  </div>
 
+  {% block content %}
   {% endblock content %}
 
 
