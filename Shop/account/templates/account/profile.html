@@ -1,7 +1,6 @@
 {% extends 'dress/base.html' %}
 {% load static %}
 
-
 {% block title %}
 Кабинет
 {% endblock title %}
@@ -35,10 +34,10 @@
             </nav>
 
             <div class="tab-content">
+
                 <h3 class="col-md-12 ml-4 mb-4 mt-4 billing-heading">Детали</h3>
                 <div class="col-md-6">
                     <div class="form-group">
-                        {% csrf_token %}
                         <label>Имя</label>
                         <input type="text" class="form-control" value="{{ request.user.first_name }}" readonly>
                     </div>

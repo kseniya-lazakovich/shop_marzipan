@@ -6,6 +6,7 @@ from .forms import LoginForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from .forms import UserRegForm
+from django.contrib import messages
 from django.views.generic.edit import FormView
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -40,7 +41,7 @@ class AccountView(TemplateView):
 class LoginFormView(FormView):
     """ обработка формы входа """
     form_class = LoginForm
-    template_name = 'registration/login.html'
+    template_name = 'account/profile.html'
     success_url = '/'
 
     def post(self, request, *args, **kwargs):
@@ -58,7 +59,7 @@ class LoginFormView(FormView):
                 else:
                     return render(request, 'registration/logged_out.html')
             else:
-                return HttpResponse('Неправильный логин или пароль')
+                messages.error(request, 'Неправильный логин или пароль')
             return self.render_to_response(
                 self.get_context_data(
                 success=True
@@ -71,7 +72,7 @@ class LoginFormView(FormView):
 class UserRegFormView(FormView):
     """ обработка формы регистрации """
     form_class = UserRegForm
-    template_name = 'registration/login.html'
+    template_name = 'registration/success.html'
     success_url = '/'
 
     def post(self, request, *args, **kwargs):
