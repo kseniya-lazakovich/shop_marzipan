@@ -23,7 +23,7 @@
 			<nav>
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
 					<a class="nav-item nav-link active" href="{% url 'account:login' %}">Вход</a>
-					<a class="nav-item nav-link" href="">Регистрация</a>
+					<a class="nav-item nav-link" href="{% url 'account:register' %}">Регистрация</a>
 				</div>
 			</nav>
 
@@ -34,7 +34,7 @@
 							{% bootstrap_messages %}
 						</div>
 					</div>
-					<form action="{% url 'account:login' %}" method="POST" class="p-3 pt-0">
+					<form action="." method="POST" class="p-3 pt-0">
 						{% csrf_token %}
 						<div class="align-items-end mx-auto p-3 col-md-8">
 							<div class="col">
@@ -48,7 +48,9 @@
 								</div>
 							</div>
 							<div class="col row justify-content-around">
-								<input type="submit" class="btn btn-primary py-3 px-4" value="Войти">
+								<div class="col-6">
+									<input type="submit" class="btn btn-primary py-3 px-5" value="Войти">
+								</div>
 								<div class="col-6 text-center mt-3">
 									<a href="" class="mx-auto">Забыли пароль?</a>
 								</div>
