@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,9 +28,7 @@
   <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
 
 </head>
-
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light ftco-navbar-light-2" 
   id="ftco-navbar">
     <div class="container">
@@ -69,7 +68,7 @@
 
             </a>
             {% else %}
-            <a href="{% url 'account:auth' %}" class="nav-link">Авторизация</a>
+            <a href="{% url 'account:login' %}" class="nav-link">Авторизация</a>
             {% endif %}
 
           </li>
@@ -85,8 +84,21 @@
 
   <!-- END nav -->
 
-  {% block content %}
+  <div class="hero-wrap hero-bread" style="background-image: url('/static/images/bg-list.jpg');">
+    <div class="row no-gutters slider-text align-items-center justify-content-center" style="background: #ffffff9d;">
+      <div class="col-md-9 ftco-animate text-center">
+        <h1 class="mb-0 bread">
+        {% block h1 %}
+          
+        {% endblock h1 %}
+          </h1>
+        <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'dress:index' %}">Главная</a></span>
+        </p>
+      </div>
+    </div>
+  </div>
 
+  {% block content %}
   {% endblock content %}
 
 

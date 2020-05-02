@@ -1,26 +1,20 @@
 {% extends 'dress/base.html' %}
 {% load static %}
-
+{% load crispy_forms_tags %}
+{% load bootstrap4 %}
 
 {% block title %}
 Кабинет
 {% endblock title %}
 
 
+{% block h1 %}
+Кабинет
+{% endblock h1 %}
+    
 
 {% block content %}
 
-<div class="hero-wrap hero-bread" style="background-image: url('/static/images/bg-list.jpg');">
-    <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-            <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mb-0 bread">Кабинет</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'dress:index' %}">Главная</a></span>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
 
 <section class="ftco-section pt-0">
     <div class="container">
@@ -34,35 +28,18 @@
                 </div>
             </nav>
 
-            <div class="tab-content">
+            <div class="tab-content col-md-6">
                 <h3 class="col-md-12 ml-4 mb-4 mt-4 billing-heading">Детали</h3>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {% csrf_token %}
-                        <label>Имя</label>
-                        <input type="text" class="form-control" value="{{ request.user.first_name }}" readonly>
+                <form action="." method="post" class="form-group" enctype="multipart/form-data">
+                    {{ user_form|crispy }}
+                    {{ profile_form|crispy }}
+                    {% csrf_token %}
+                    <div class="cart-detail  text-center col-6">
+                        <input type="submit" class="btn btn-primary" value="Изменить">
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Фамилия</label>
-                        <input type="text" class="form-control" value="{{ request.user.last_name }}" readonly>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Логин</label>
-                        <input type="text" class="form-control" value="{{ request.user.username }}" readonly>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>E-Mail</label>
-                        <input type="text" class="form-control" value="{{ request.user.email}}" readonly>
-                    </div>
-                </div>
-                <div class="cart-detail  text-center col-md-2">
-                    <a class="btn btn-primary py-3 px-4" href="{% url 'account:logout' %}">Выход</a>
+                </form>
+                <div class="cart-detail  text-center col-6">
+                    <a class="btn btn-primary" href="{% url 'account:logout' %}">Выход</a>
                 </div>
             </div>
 
