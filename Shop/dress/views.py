@@ -1,15 +1,8 @@
-from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
-from django.template import TemplateDoesNotExist
-from django.template.loader import get_template
 from .models import Category, Product
-from django.views.generic.base import TemplateView
-# from cart.forms import CartAddProductForm
+from cart.forms import CartAddProductForm
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
-
-"""Товары и категории"""
 
 
 def index(request):

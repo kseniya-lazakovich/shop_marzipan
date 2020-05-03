@@ -14,7 +14,7 @@
 
 {% block content %}
 
-<section class="ftco-section ftco-cart">
+<section class="ftco-section ftco-cart pb-3 pt-5">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 ftco-animate">
@@ -64,7 +64,7 @@
 			</div>
 		</div>
 		<div class="row justify-content-end">
-			<div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
+			<div class="col col-lg-4 col-md-6 mt-5 cart-wrap ftco-animate">
 				<div class="cart-total mb-3">
 					<h3>Сумма к оплате</h3>
 					<p class="d-flex total-price">
@@ -72,7 +72,7 @@
 						<span>{{ cart.get_total_price}}</span>
 					</p>
 				</div>
-				<p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Оформить заказ</a>
+				<p class="text-center"><a href="{% url 'orders:order' %}" class="btn btn-primary py-3 px-4">Оформить заказ</a>
 				</p>
 			</div>
 		</div>

@@ -1,0 +1,35 @@
+{% extends 'dress/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load bootstrap4 %}
+
+
+{% block title %}
+    Оформление заказа
+{% endblock title %}
+    
+
+{% block h1 %}
+    Оформление заказа
+{% endblock h1 %}
+
+
+{% block content %}
+<div class="container">
+    <div class="col-md-8 p-5 m-5 bg-light mx-auto">
+        <form action="." method="POST" class="form-grop row">
+            <div class="col-md-6 p-3">{{ form.first_name }}</div>
+            <div class="col-md-6 p-3">{{ form.last_name }}</div>
+            <div class="col-md-6 p-3">{{ form.email }}</div>
+            <div class="col-md-6 p-3">{{ form.country }}</div>
+            <div class="col-md-6 p-3">{{ form.city }}</div>
+            <div class="col-md-6 p-3">{{ form.address }}</div>
+            <div class="col-md-6 p-3">{{ form.postal_code }}</div>
+            {% csrf_token %}
+            <div class="col-md-6 p-3 mx-auto">
+                <input type="submit" class="btn btn-primary py-3" value="Готово" style="width: 100%;">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
