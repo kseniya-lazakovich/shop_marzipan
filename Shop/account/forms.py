@@ -18,7 +18,7 @@ class UserRegForm(forms.ModelForm):
         model = User
         fields = ('first_name', 'last_name', 'username', 'email')
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Имя *', 'required': 'True'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Имя',}),
             'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Фамилия'}),
             'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Логин *', 'required': 'True'}),
             'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'E-Mail *', 'required': 'True'}),
