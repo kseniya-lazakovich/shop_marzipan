@@ -11,7 +11,7 @@
 {% block h1 %}
 Кабинет
 {% endblock h1 %}
-    
+
 
 {% block content %}
 
@@ -29,12 +29,17 @@
             </nav>
             {% if messages %}
             <div class="col mt-4 mb-4">
-            {% bootstrap_messages %}
+                {% bootstrap_messages %}
             </div>
             {% endif %}
             <div class="col-md-10 row">
                 <div class="tab-content col-md-6">
-                    <h3 class="col-md-12 ml-4 mb-4 mt-4 billing-heading">Детали</h3>
+                    <div class="row">
+                        <h3 class="col-md-5 ml-4 mb-4 mt-4 billing-heading">Детали</h3>
+                        <div class="text-center col-6 pt-4">
+                            <a href="{% url 'account:logout' %}">Выход</a>
+                        </div>  
+                    </div>
                     <form action="." method="post" class="form-group" enctype="multipart/form-data">
                         {{ user_form|crispy }}
                         {{ profile_form|crispy }}
@@ -43,11 +48,7 @@
                             <input type="submit" class="btn btn-primary" value="Изменить">
                         </div>
                     </form>
-                    <div class="cart-detail  text-center col-6">
-                        <a class="btn btn-primary" href="{% url 'account:logout' %}">Выход</a>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-4" style="background: url('{{ user.profile.photo.url }}') no-repeat;">
+
                 </div>
             </div>
             {% endblock section %}
