@@ -5,7 +5,7 @@ from .models import Profile
 from .forms import LoginForm, UserRegForm, UserEditForm, ProfileEditForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView, PasswordResetView, PasswordResetConfirmView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 
@@ -59,12 +59,18 @@ def user_register(request):
             new_user = user_form.save(commit=False)
             # # Задаем пользователю зашифрованный пароль.
             new_user.set_password(user_form.cleaned_data['password'])
-            Profile.objects.create(user=new_user)
             # Сохраняем пользователя в базе данных.
             new_user.save()
+            Profile.objects.create(user=new_user)
             return render(request, 'registration/success.html', {'new_user': new_user})
     else:
         user_form = UserRegForm()
     return render(request, 'registration/register.html', {'user_form': user_form})
 
 
+class MyPasswordReset(PasswordResetView):
+    success_url = reverse_lazy('account:password_reset_done')
+
+
+class MyPasswordResetConfirm(PasswordResetConfirmView):
+    success_url = reverse_lazy('account:password_reset_complete')

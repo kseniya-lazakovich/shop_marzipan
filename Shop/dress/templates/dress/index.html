@@ -226,9 +226,9 @@
           <div class="ftco-footer-widget mb-4 ml-md-5">
             <h2 class="ftco-heading-2">Меню</h2>
             <ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">Категории</a></li>
+              <li><a href="{% url 'dress:product_list' %}" class="py-2 d-block">Каталог</a></li>
               <li><a href="{% url 'dress:about' %}" class="py-2 d-block">О нас</a></li>
-              <li><a href="#" class="py-2 d-block">Новости и акции</a></li>
+              <li><a href="{% url 'blog:blog_list' %}" class="py-2 d-block">Новости и акции</a></li>
             </ul>
           </div>
         </div>

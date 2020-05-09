@@ -1,6 +1,5 @@
 {% extends 'dress/base.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
 {% load bootstrap4 %}
 
 
@@ -16,19 +15,24 @@
 
 {% block content %}
 <div class="container">
-    <div class="order-info">    
-        <h3>Your order</h3>    
-        <ul>      
-            {% for item in cart %}        
-            <li>          
-                {{ item.quantity }}x {{ item.product.title }}          
-                <span>${{ item.total_price }}</span>        
-            </li>      
-            {% endfor %}    
-        </ul>    
-        <p>Total: ${{ cart.get_total_price }}</p>  
+    <div class="col-md-12 mb-5 mx-auto row justify-content-around">
+        <div class="col-md-4  mt-5">
+        <div class="order-info">
+        <h3>Ваш заказ</h3>
+        <ul class="list-group">
+            {% for item in cart %}
+            <li class="list-group-item">
+                {{ item.quantity }} x {{ item.product.title }}
+                <span> {{ item.total_price }} BYN</span>
+            </li>
+            {% endfor %}
+            <li class="list-group-item text-right">
+                Всего: {{ cart.get_total_price }} BYN
+            </li>
+        </ul>
     </div>
-    <div class="col-md-8 p-5 m-5 bg-light mx-auto">
+</div>
+    <div class="col-md-7  mt-5 p-4 bg-light">
         <form action="." method="POST" class="form-grop row">
             <div class="col-md-6 p-3">{{ form.first_name }}</div>
             <div class="col-md-6 p-3">{{ form.last_name }}</div>
@@ -42,6 +46,7 @@
                 <input type="submit" class="btn btn-primary py-3" value="Готово" style="width: 100%;">
             </div>
         </form>
+    </div>
     </div>
 </div>
 {% endblock content %}
