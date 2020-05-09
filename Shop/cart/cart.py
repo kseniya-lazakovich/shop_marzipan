@@ -3,7 +3,6 @@ from django.conf import settings
 from dress.models import Product
 
 
-
 class Cart(object):
     def __init__(self, request):
         """ Инициализация объекта корзины """
