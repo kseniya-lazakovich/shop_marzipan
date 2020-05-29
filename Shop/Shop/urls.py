@@ -24,5 +24,6 @@ urlpatterns = [
     path('account/', include('account.urls', namespace='account')),
     path('blog/', include('blog.urls', namespace='blog')),
     path('order/', include('orders.urls', namespace='orders')),
+    path('payment/', include('payment.urls', namespace='payment')),
     path('', include('dress.urls', namespace='dress')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

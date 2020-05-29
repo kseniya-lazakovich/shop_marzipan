@@ -6,5 +6,6 @@
             "name": "database"
         }
     ],
-    "sqltools.useNodeRuntime": true
+    "sqltools.useNodeRuntime": true,
+    "python.pythonPath": "c:\\Users\\ksysha\\Desktop\\shop_marzipan\\venv\\Scripts\\python.exe"
 }
