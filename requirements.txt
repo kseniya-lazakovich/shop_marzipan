@@ -1,10 +1,5 @@
-appdirs==1.4.3
-asgiref==3.2.3
-astroid==2.3.3
 autopep8==1.5.1
 beautifulsoup4==4.8.2
-colorama==0.4.3
-distlib==0.3.0
 Django==3.0.3
 django-bootstrap4==1.1.1
 django-crispy-forms==1.9.0
@@ -22,5 +17,3 @@ pytz==2019.3
 six==1.14.0
 soupsieve==2.0
 sqlparse==0.3.0
-virtualenv==20.0.18
-wrapt==1.11.2

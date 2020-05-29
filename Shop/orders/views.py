@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import OrderItem, Order
 from django.core.mail import send_mail
 from .forms import OrderCreateForm
 from cart.cart import Cart
+from django.urls import reverse
 
 
 def order_created(order_id):
@@ -10,7 +11,6 @@ def order_created(order_id):
     order = Order.objects.get(id=order_id)
     subject = 'Order nr. {}'.format(order.id)
     message = 'Дорогой {},\n\nВаш заказ оформлен и принят в обработку.\n'\
-              'Ваши товары: {}'\
               'Номер заказа №{}.'.format(order.first_name, order.id)
     mail_sent = send_mail(subject, message, 'admin@myshop.com', [order.email])
     return mail_sent
@@ -27,7 +27,8 @@ def order_create(request):
                     'price'], quantity=item['quantity'])
             cart.clear()
             order_created(order.id)
-            return render(request, 'orders/created.html', {'order': order})
+            request.session['order_id'] = order.id
+            return redirect(reverse('payment:process'))
     else:
         form = OrderCreateForm()
     return render(request, 'orders/create.html', {'cart': cart, 'form': form})
