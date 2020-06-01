@@ -1,9 +1,11 @@
+from django.core.mail import send_mail
+from django.urls import reverse
 from django.shortcuts import render, redirect
 from .models import OrderItem, Order
-from django.core.mail import send_mail
 from .forms import OrderCreateForm
 from cart.cart import Cart
-from django.urls import reverse
+from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import get_object_or_404
 
 
 def order_created(order_id):
@@ -32,3 +34,12 @@ def order_create(request):
     else:
         form = OrderCreateForm()
     return render(request, 'orders/create.html', {'cart': cart, 'form': form})
+
+
+@staff_member_required
+def admin_order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    return render(request,
+                  'admin/orders/order/detail.html',
+                  {'order': order})
+
