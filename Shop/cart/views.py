@@ -7,7 +7,7 @@ from .forms import CartAddProductForm
 
 @require_POST
 def cart_add(request, product_id):
-    """ Добавить товара в корзину """
+    """ Добавить товар в корзину """
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     form = CartAddProductForm(request.POST)

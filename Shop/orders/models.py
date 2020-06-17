@@ -12,7 +12,7 @@ class Order(models.Model):
     city = models.CharField('Город', max_length=100)
     created = models.DateTimeField('Дата создания', auto_now_add=True)
     updated = models.DateTimeField('Обновление', auto_now=True)
-    paid = models.BooleanField('Отправлен', default=False)
+    paid = models.BooleanField('Оплачен', default=False)
     braintree_id = models.CharField(max_length=150, blank=True)
 
     class Meta:

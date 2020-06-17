@@ -21,21 +21,6 @@
         <h3>{{ product.title }}</h3>
         <p class="price"><span>{{ product.price}} BYN</span></p>
         <p>{{ product.description}}</p>
-        <div class="row mt-4">
-          <div class="col-md-6">
-            <div class="form-group d-flex">
-              <div class="select-wrap">
-                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                <select name="" id="" class="form-control">
-                  <option value="">S</option>
-                  <option value="">M</option>
-                  <option value="">L</option>
-                  <option value="">XL</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="w-100"></div>
 
           <form action="{% url 'cart:cart_add' product.id %}" method="post" >
             <div class="input-group col-md-8 d-flex mb-3">
