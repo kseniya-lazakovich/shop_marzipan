@@ -1,7 +1,7 @@
 weasyprint
 autopep8==1.5.1
 beautifulsoup4==4.8.2
-Django==3.0.3
+Django==3.0.14
 django-bootstrap4==1.1.1
 django-crispy-forms==1.9.0
 filelock==3.0.12
